@@ -20,15 +20,14 @@ public class AddMenuItemChild implements UserAction {
 
     @Override
     public boolean execute(Input input, Menu menu) {
-        System.out.println("=== Создание подпункта меню ===");
+        out.println("=== Создание подпункта меню ===");
         String nameRoot = input.askStr("Введите имя корневого пункта: ");
         String nameChild = input.askStr("Введите имя нового подпункта: ");
-        boolean rsl = (menu.select(nameRoot).isPresent() && nameChild != null);
-        if (rsl) {
+        if (menu.select(nameRoot).isPresent() && nameChild != null) {
             menu.add(nameRoot, nameChild, action);
-            System.out.println("=== Добавлен подпункт меню ===");
+            out.println("=== Добавлен подпункт меню ===");
         } else {
-            System.out.println("=== Подпункт меню не добавлен (не найден корневой пункт) ===");
+            out.println("=== Подпункт меню не добавлен (не найден корневой пункт) ===");
         }
         return true;
     }

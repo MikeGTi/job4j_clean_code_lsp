@@ -20,10 +20,10 @@ public class AddMenuItemRoot implements UserAction {
 
     @Override
     public boolean execute(Input input, Menu menu) {
-        System.out.println("=== Создание корневого пункта меню ===");
+        out.println("=== Создание корневого пункта меню ===");
         String nameRoot = input.askStr("Введите имя корневого пункта: ");
         menu.add(null, nameRoot, action);
-        System.out.println("=== Добавлен корневой пункт меню ===");
+        out.println("=== Добавлен корневой пункт меню ===");
         return true;
     }
 }

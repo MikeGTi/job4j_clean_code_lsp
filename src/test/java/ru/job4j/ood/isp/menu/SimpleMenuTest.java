@@ -33,13 +33,13 @@ public class SimpleMenuTest {
         assertThat(new Menu.MenuItemInfo(
                 "Покормить собаку", List.of(), STUB_ACTION, "2."))
                 .isEqualTo(menu.select("Покормить собаку").get());
-        //menu.forEach(i -> System.out.println(i.getNumber() + i.getName()));
+        /*  menu.forEach(i -> System.out.println(i.getNumber() + i.getName())); */
 
         SimpleMenuPrinter simpleMenuPrinter = new SimpleMenuPrinter();
         simpleMenuPrinter.print(menu);
     }
 
-    // select existing item returns correct MenuItemInfo
+    /* select existing item returns correct MenuItemInfo */
     @Test
     public void whenSelectExistingItemThanReturnMenuItemInfo() {
         SimpleMenu menu = new SimpleMenu();
@@ -51,7 +51,7 @@ public class SimpleMenuTest {
         assertEquals("child", result.get().getName());
     }
 
-    // select non-existing item returns empty Optional
+    /* select non-existing item returns empty Optional */
     @Test
     public void whenSelectNonExistingItemThanReturnOptionalEmpty() {
         SimpleMenu menu = new SimpleMenu();
@@ -61,7 +61,7 @@ public class SimpleMenuTest {
         assertFalse(result.isPresent());
     }
 
-    // select item with special characters in name
+    /* select item with special characters in name */
     @Test
     public void whenSelectItemWithSpecialCharactersInNameThanReturnMenuItemInfo() {
         SimpleMenu menu = new SimpleMenu();

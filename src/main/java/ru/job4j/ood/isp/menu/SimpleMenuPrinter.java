@@ -1,41 +1,29 @@
 package ru.job4j.ood.isp.menu;
 
-import java.util.Iterator;
 
 public class SimpleMenuPrinter implements MenuPrinter {
 
+    public SimpleMenuPrinter() {
+    }
+
     @Override
     public void print(Menu menu) {
-        Iterator<Menu.MenuItemInfo> it = menu.iterator();
-        while (it.hasNext()) {
-            print(it.next());
+        for (Menu.MenuItemInfo menuItemInfo : menu) {
+            print(menuItemInfo);
         }
     }
 
     @Override
     public void print(Menu.MenuItemInfo menuItemInfo) {
-        System.out.printf(String.format("%s %s%n",
-                                        menuItemInfo.getNumber(),
-                                        menuItemInfo.getName()).indent(getIndentCount(menuItemInfo.getNumber())));
+        String number = menuItemInfo.getNumber();
+        int indentCount = getIndentCount(number);
+        String rsl = number.indent(indentCount).replace('\n', ' ') + menuItemInfo.getName() + System.lineSeparator();
+        System.out.printf(rsl);
     }
 
     private int getIndentCount(String str) {
-        int indent;
-        final int multiplier = 2;
-        char smb = '.';
-        int count = countSymbol(str, smb);
-        if (count < 2) {
-            indent = 0;
-        } else {
-            if (count % 2 != 0) {
-                count += 1;
-            }
-            indent = count * multiplier;
-        }
-        return indent;
+        int symbolsCount = (int) str.chars().filter(c -> c == (int) '.').count();
+        return symbolsCount * 3;
     }
 
-    private int countSymbol(String str, char symbol) {
-        return (int) str.chars().filter(c -> c == (int) symbol).count();
-    }
 }

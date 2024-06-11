@@ -1,7 +1,6 @@
 package ru.job4j.ood.isp.menu;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -9,11 +8,10 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SimpleMenuTest {
-
     public static final ActionDelegate STUB_ACTION = System.out::println;
 
     @Test
-    public void whenAddThenReturnSame() {
+    public void whenAddThenSelectEqualObjects() {
         Menu menu = new SimpleMenu();
         menu.add(Menu.ROOT, "Сходить в магазин", STUB_ACTION);
         menu.add(Menu.ROOT, "Покормить собаку", STUB_ACTION);
@@ -33,10 +31,6 @@ public class SimpleMenuTest {
         assertThat(new Menu.MenuItemInfo(
                 "Покормить собаку", List.of(), STUB_ACTION, "2."))
                 .isEqualTo(menu.select("Покормить собаку").get());
-        /*  menu.forEach(i -> System.out.println(i.getNumber() + i.getName())); */
-
-        SimpleMenuPrinter simpleMenuPrinter = new SimpleMenuPrinter();
-        simpleMenuPrinter.print(menu);
     }
 
     /* select existing item returns correct MenuItemInfo */
